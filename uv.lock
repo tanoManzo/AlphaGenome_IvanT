@@ -7,6 +7,9 @@ resolution-markers = [
     "python_full_version < '3.12'",
 ]
 
+[manifest]
+build-constraints = [{ name = "grpcio-tools", specifier = "==1.78.0" }]
+
 [[package]]
 name = "absl-py"
 version = "2.4.0"
@@ -151,14 +154,14 @@ wheels = [
 
 [[package]]
 name = "alphagenome"
-version = "0.5.1"
+version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "absl-py" },
     { name = "anndata" },
+    { name = "fsspec" },
     { name = "grpcio" },
     { name = "immutabledict" },
-    { name = "intervaltree" },
     { name = "jaxtyping" },
     { name = "matplotlib" },
     { name = "ml-dtypes" },
@@ -166,6 +169,7 @@ dependencies = [
     { name = "pandas" },
     { name = "protobuf" },
     { name = "pyarrow" },
+    { name = "pyfaidx" },
     { name = "scipy" },
     { name = "seaborn" },
     { name = "tqdm" },
@@ -173,9 +177,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "zstandard" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9a/93/ff9b1b9ac890d87d0773b9a4a5f25b5ceb9ce9d54d3f00f2090ec95f4086/alphagenome-0.5.1.tar.gz", hash = "sha256:e7ca21dcb431ffa522d6f911ae7979d5f1e1ef63c621244d1e00db875ef8703b", size = 7887164, upload-time = "2025-12-12T11:48:29.231Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/25/c3/5af6692a2737befed4ba75297ed2e4fc9df60f1813f6660730857319f535/alphagenome-0.10.0.tar.gz", hash = "sha256:0ce9b6479acd4c51fb23d7742198af35c007920526a4e4815530d46aa430e5dd", size = 8851530, upload-time = "2026-10-08T13:58:11.109Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/14/7f/866b91f4e828a7030d980c213884551e38cee226a627b129c6aa27b65df9/alphagenome-0.5.1-py3-none-any.whl", hash = "sha256:9d4efcf3320cde569b571e468665dda56c00e5c0db065638079c9caf57da4575", size = 175017, upload-time = "2025-12-12T11:48:27.13Z" },
+    { url = "https://files.pythonhosted.org/packages/2b/f8/d7ada68e79c07d45eb4331d428462d8a16f0e741b435ec39db2a26b20a96/alphagenome-0.10.0-py3-none-any.whl", hash = "sha256:ed90696f7f0900b2e0d68e28e36ab7d6d95000f59cd19b969fec0bea806bd2c2", size = 231194, upload-time = "2026-10-08T13:58:09.607Z" },
 ]
 
 [[package]]
@@ -378,8 +382,8 @@ requires-dist = [
     { name = "aiohappyeyeballs", specifier = "==2.6.1" },
     { name = "aiohttp", specifier = "==3.13.3" },
     { name = "aiosignal", specifier = "==1.4.0" },
-    { name = "alphagenome", specifier = "==0.5.1" },
-    { name = "alphagenome-research", git = "https://github.com/google-deepmind/alphagenome_research.git?rev=8ed3414d1c3efea4e0867f797613b1377e422a37" },
+    { name = "alphagenome", specifier = "==0.10.0" },
+    { name = "alphagenome-research", git = "https://github.com/google-deepmind/alphagenome_research.git?rev=3eecf48e58d7babbbc53525a8a0cf29a179e20a6" },
     { name = "anndata", specifier = "==0.12.10" },
     { name = "annotated-doc", specifier = "==0.0.4" },
     { name = "anyio", specifier = "==4.12.1" },
@@ -542,7 +546,7 @@ requires-dist = [
     { name = "tornado", specifier = ">=6.5.5" },
     { name = "tqdm", specifier = "==4.67.3" },
     { name = "traitlets", specifier = ">=5.14.3" },
-    { name = "triton", specifier = "==3.1.0" },
+    { name = "triton", specifier = "==3.2.0" },
     { name = "typeguard", specifier = "==4.4.4" },
     { name = "typer", specifier = "==0.23.1" },
     { name = "typer-slim", specifier = "==0.23.1" },
@@ -563,10 +567,11 @@ requires-dist = [
 
 [[package]]
 name = "alphagenome-research"
-version = "0.0.1"
-source = { git = "https://github.com/google-deepmind/alphagenome_research.git?rev=8ed3414d1c3efea4e0867f797613b1377e422a37#8ed3414d1c3efea4e0867f797613b1377e422a37" }
+version = "0.3.0"
+source = { git = "https://github.com/google-deepmind/alphagenome_research.git?rev=3eecf48e58d7babbbc53525a8a0cf29a179e20a6#3eecf48e58d7babbbc53525a8a0cf29a179e20a6" }
 dependencies = [
     { name = "absl-py" },
+    { name = "aiohttp" },
     { name = "alphagenome" },
     { name = "anndata" },
     { name = "chex" },
@@ -578,9 +583,12 @@ dependencies = [
     { name = "jaxtyping" },
     { name = "kagglehub" },
     { name = "numpy" },
-    { name = "orbax" },
+    { name = "optax" },
+    { name = "orbax-checkpoint" },
     { name = "pandas" },
+    { name = "protobuf" },
     { name = "pyarrow" },
+    { name = "pybigwig" },
     { name = "pyfaidx" },
     { name = "pyranges" },
     { name = "tensorflow" },
@@ -3133,6 +3141,21 @@ wheels = [
 ]
 
 [[package]]
+name = "optax"
+version = "0.2.8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "absl-py" },
+    { name = "jax" },
+    { name = "jaxlib" },
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8c/f9/e3d11ae6f298ee941a0690e353a323d158ba5dedc436e75621c310845c5c/optax-0.2.8.tar.gz", hash = "sha256:5b225b35066fc3eebaa4d798f1b4173b4d57d1a480610908981f8343b50af0b0", size = 301193, upload-time = "2026-03-20T23:30:05.465Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8a/69/6a93d8600c339d7687a05857c7907bd4dd8cf88691a5ea106d7a50af90a1/optax-0.2.8-py3-none-any.whl", hash = "sha256:e3ca2d36c99daab1800ae9dbc0545034382d6bc780b24d969e1b0df65fa31cb4", size = 402960, upload-time = "2026-03-20T23:30:03.886Z" },
+]
+
+[[package]]
 name = "optree"
 version = "0.18.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3679,6 +3702,17 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/61/d9/d1274b0e6f19e235de17441e53224f4716574b2ca837022d55702f24d71d/pyarrow-23.0.0-cp314-cp314t-musllinux_1_2_aarch64.whl", hash = "sha256:54810f6e6afc4ffee7c2e0051b61722fbea9a4961b46192dcfae8ea12fa09059", size = 48233605, upload-time = "2026-01-18T16:19:19.544Z" },
     { url = "https://files.pythonhosted.org/packages/39/07/e4e2d568cb57543d84482f61e510732820cddb0f47c4bb7df629abfed852/pyarrow-23.0.0-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:14de7d48052cf4b0ed174533eafa3cfe0711b8076ad70bede32cf59f744f0d7c", size = 50603979, upload-time = "2026-01-18T16:19:26.717Z" },
     { url = "https://files.pythonhosted.org/packages/72/9c/47693463894b610f8439b2e970b82ef81e9599c757bf2049365e40ff963c/pyarrow-23.0.0-cp314-cp314t-win_amd64.whl", hash = "sha256:427deac1f535830a744a4f04a6ac183a64fcac4341b3f618e693c41b7b98d2b0", size = 28338905, upload-time = "2026-01-18T16:19:32.93Z" },
+]
+
+[[package]]
+name = "pybigwig"
+version = "0.3.26"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/91/9b/85daed040fc5a33117e97dd48047bf771f3caa633537eccd9c24a96377fa/pybigwig-0.3.26.tar.gz", hash = "sha256:8b01c6542ed9e65d0758ff18a43d6fd7b1c517e1f6aa6132368fe17ee32c1533", size = 75758, upload-time = "2026-09-14T10:04:42.569Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/75/5a/a5a34990541472cf2b7723aeacf12c606b97613f1e7c9ec5fc123fdf01b3/pybigwig-0.3.26-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b03d6833e03b540bd846d1396ead73043a3c59b0171125b05d3d594003aacc18", size = 187502, upload-time = "2026-09-14T10:04:45.022Z" },
+    { url = "https://files.pythonhosted.org/packages/c3/57/43cfb46cd842f67f8654484eff284d9a922848cc60af42dddcd8d30e4117/pybigwig-0.3.26-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:3403636c431a5bbab05f5c3ce24acb5ae0fab5e5602c259725ef0f54ddc98817", size = 189085, upload-time = "2026-09-14T10:04:46.225Z" },
+    { url = "https://files.pythonhosted.org/packages/19/cf/8f3b86c9eb3374039cf3b04e99a3e16113bb62b68d14bfd183af1402a0ee/pybigwig-0.3.26-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ab168f27ff623ee3576e953b80de2d9d1b472446a43b3252dbbc621db57107ed", size = 189118, upload-time = "2026-09-14T10:04:47.243Z" },
 ]
 
 [[package]]
@@ -4392,14 +4426,12 @@ wheels = [
 
 [[package]]
 name = "triton"
-version = "3.1.0"
+version = "3.2.0"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "filelock" },
-]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/86/17/d9a5cf4fcf46291856d1e90762e36cbabd2a56c7265da0d1d9508c8e3943/triton-3.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0f34f6e7885d1bf0eaaf7ba875a5f0ce6f3c13ba98f9503651c1e6dc6757ed5c", size = 209506424, upload-time = "2024-10-14T16:05:42.337Z" },
-    { url = "https://files.pythonhosted.org/packages/78/eb/65f5ba83c2a123f6498a3097746607e5b2f16add29e36765305e4ac7fdd8/triton-3.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c8182f42fd8080a7d39d666814fa36c5e30cc00ea7eeeb1a2983dbb4c99a0fdc", size = 209551444, upload-time = "2024-10-14T16:05:53.433Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/2e/757d2280d4fefe7d33af7615124e7e298ae7b8e3bc4446cdb8e88b0f9bab/triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8009a1fb093ee8546495e96731336a33fb8856a38e45bb4ab6affd6dbc3ba220", size = 253157636, upload-time = "2025-01-22T19:12:51.322Z" },
+    { url = "https://files.pythonhosted.org/packages/06/00/59500052cb1cf8cf5316be93598946bc451f14072c6ff256904428eaf03c/triton-3.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8d9b215efc1c26fa7eefb9a157915c92d52e000d2bf83e5f69704047e63f125c", size = 253159365, upload-time = "2025-01-22T19:13:24.648Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/30/37a3384d1e2e9320331baca41e835e90a3767303642c7a80d4510152cbcf/triton-3.2.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e5dfa23ba84541d7c0a531dfce76d8bcd19159d50a4a8b14ad01e91734a5c1b0", size = 253154278, upload-time = "2025-01-22T19:13:54.221Z" },
 ]
 
 [[package]]

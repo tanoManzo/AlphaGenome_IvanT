@@ -10,7 +10,7 @@ dependencies = [
     "aiohappyeyeballs==2.6.1",
     "aiohttp==3.13.3",
     "aiosignal==1.4.0",
-    "alphagenome==0.5.1",
+    "alphagenome==0.10.0",
     "alphagenome-research",
     "anndata==0.12.10",
     "annotated-doc==0.0.4",
@@ -174,7 +174,7 @@ dependencies = [
     "tornado>=6.5.5",
     "tqdm==4.67.3",
     "traitlets>=5.14.3",
-    "triton==3.1.0",
+    "triton==3.2.0",
     "typeguard==4.4.4",
     "typer==0.23.1",
     "typer-slim==0.23.1",
@@ -193,5 +193,9 @@ dependencies = [
     "zstandard==0.25.0",
 ]
 
+[tool.uv]
+# Generate bindings compatible with the pinned Protobuf 6 runtime.
+build-constraint-dependencies = ["grpcio-tools==1.78.0"]
+
 [tool.uv.sources]
-alphagenome-research = { git = "https://github.com/google-deepmind/alphagenome_research.git", rev = "8ed3414d1c3efea4e0867f797613b1377e422a37" }
+alphagenome-research = { git = "https://github.com/google-deepmind/alphagenome_research.git", rev = "3eecf48e58d7babbbc53525a8a0cf29a179e20a6" }
